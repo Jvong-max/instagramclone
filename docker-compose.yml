@@ -1,0 +1,29 @@
+#adapted from example in docker documentation
+version: '3'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/code
+    links:
+      - redis:redis
+    expose:
+      - 8000
+    user: "1001:1002" #System dependent 
+    command: python /code/mysite/manage.py runserver 0.0.0.0:8000
+  
+  redis:
+    image: redis
+    expose:
+      - 6379
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    depends_on:
+      - web
+    ports:
+      - 80:80
+    links:
+      - web:web
