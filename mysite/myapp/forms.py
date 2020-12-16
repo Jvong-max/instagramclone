@@ -27,7 +27,7 @@ def must_be_bob(value):
 
 class SuggestionForm(forms.Form):
     suggestion = forms.CharField(
-        label='Suggestion',
+        label='Title',
         required=True,
         max_length=240,
     )

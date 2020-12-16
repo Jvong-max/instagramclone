@@ -1,0 +1,5 @@
+
+<form action = "{ % 'like_post' sugg.id %}" method = "POST">
+    {% csrf_token %}
+    <button type = "submit", name = "post_id", value = "{{ sugg.id }}", class = "btn btn-primary btn-sm">Like</button>
+</form>

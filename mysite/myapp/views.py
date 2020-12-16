@@ -118,3 +118,9 @@ def register(request):
 
 def tetris(request):
     return render(request, 'tetris.html')
+
+def LikeView(request, sugg_id):
+    return redirect("/",args=[str(sugg_id)])
+
+def DislikeView(request, sugg_id):
+    return redirect("/",args=[str(sugg_id)])

@@ -13,4 +13,6 @@ urlpatterns = [
     path('suggestion/', views.add_suggestion),
     path('tetris/', views.tetris, name = 'tetris'),
     path('index/', views.index, name='index'),
+    path('likes/<int:sugg_id>/', views.LikeView),
+    path('dislikes/<int:sugg_id>/',views.DislikeView),
 ]

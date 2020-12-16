@@ -6,7 +6,7 @@ class SuggestionModel(models.Model):
     suggestion = models.CharField(max_length=240)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     published_on = models.DateTimeField(auto_now_add=True)
-    likes = models.ManyToManyField(User, related_name='blog_post')
+    likes = models.ManyToManyField(User, related_name='likes', blank = True)
     image = models.ImageField(
         max_length=144,
         upload_to='uploads/%Y/%m/%d/',
@@ -22,6 +22,7 @@ class SuggestionModel(models.Model):
     
     def number_of_likes(self):
         return self.likes.count()
+    
 
 class CommentModel(models.Model):
     comment = models.CharField(max_length=240)
@@ -31,3 +32,19 @@ class CommentModel(models.Model):
 
     def __str__(self):
         return self.comment
+
+class LikeModel(models.Model):
+    
+    likes = models.ManyToManyField(User, related_name='blog_post')
+    
+    
+    def number_of_likes(self):
+        return self.likes.count()
+
+class DislikeModel(models.Model):
+    
+    dislikes = models.ManyToManyField(User, related_name='dislike')
+    
+    
+    def number_of_dislikes(self):
+        return self.dislikes.count()
